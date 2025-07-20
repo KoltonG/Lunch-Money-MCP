@@ -172,6 +172,40 @@ To create the prd file, please do the following
 
 **Why bad:** All three test the same thing (ease of use) rather than distinct aspects
 
+### "Key Assumptions & Risks"
+
+- **Identify deal-breakers:** What could kill this project?
+- **Question user behavior:** Will they actually change habits?
+- **Surface technical risks:** Can we build this reliably?
+- **Be honest:** Acknowledge uncertainty upfront
+
+**Good:**
+
+1. **Biggest Risk:** Lunch Money API rate limits prevent real-time queries
+2. **User Assumption:** Users will switch from web UI to chat interface for finance questions
+3. **Technical Assumption:** MCP standard I/O can handle complex financial data parsing
+
+### "Anti-Goals"
+
+- **Prevent scope creep:** Explicitly state what we won't build
+- **Clarify boundaries:** What related features are out of scope?
+- **Stay focused:** Keep the team aligned on limits
+
+**Good:**
+
+- NOT building budget modification capabilities
+- NOT building expense categorization features
+- NOT supporting bulk transaction imports
+
+### "Why now?"
+
+- **Market timing:** What makes this the right moment?
+- **User readiness:** Why are users ready for this change?
+- **Competitive landscape:** What's changed in the market?
+- **Business catalyst:** What internal driver makes this urgent?
+
+**Good:** "MCP protocol adoption is accelerating with Cursor and Claude Pro support, making chat-based financial tools more accessible to developers with existing Lunch Money workflows."
+
 ### "How does it work?"
 
 - **Use Given/When/Then format** grouped under bolded scenarios
@@ -199,12 +233,15 @@ To create the prd file, please do the following
 
 **PRD Quality:**
 
-- [ ] Clear problem and solution statements
-- [ ] Measurable success criteria ordered by importance
+- [ ] Specific user persona with constraints/tools defined
+- [ ] Problem evidence provided (not just assumed pain)
+- [ ] Success criteria focus on behavior change and business outcomes
+- [ ] Biggest risks and assumptions identified upfront
+- [ ] Clear anti-goals prevent scope creep
+- [ ] Market timing/catalyst explained in "Why now?"
 - [ ] Executive-level language (readable by VP)
-- [ ] Focuses on "what" and "why", not "how"
-- [ ] Under 300 words total
-- [ ] No technical implementation details
+- [ ] Focuses on user outcomes, not features
+- [ ] Under 400 words total (updated for new sections)
 - [ ] File named with lowercase `prd.md` (not PRD.md)
 
 ## Common Mistakes to Avoid
