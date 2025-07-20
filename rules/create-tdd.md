@@ -7,13 +7,13 @@ Document (TDD) that answers: **How could we build this?**
 ## Example Usage Prompt
 
 ```
-@tdd.md Create a TDD based on @docs/YYYY-MM-DD-feature-name/prd.md
+@create-tdd for @docs/YYYY-MM-DD-feature-name/prd.md
 ```
 
 **Example:**
 
 ```
-@tdd.md Create a TDD based on @docs/2024-12-19-expense-tracker/prd.md
+@create-tdd for @docs/2024-12-19-expense-tracker/prd.md
 ```
 
 **Prerequisites:** Must have completed PRD first

@@ -1,0 +1,9 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+
+# Cursor Rule - Create PRD
+
+Please find the rules in @rules/create-prd.md

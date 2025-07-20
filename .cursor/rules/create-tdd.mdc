@@ -1,0 +1,9 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+
+# Cursor Rule - Create TDD
+
+Please find the rules in @rules/create-tdd.md

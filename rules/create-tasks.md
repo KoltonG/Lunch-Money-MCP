@@ -7,13 +7,13 @@ design and create a comprehensive task breakdown that answers:
 ## Example Usage Prompt
 
 ```
-@tasks.md Create tasks based on @docs/YYYY-MM-DD-feature-name/tdd.md
+@create-tasks for @docs/YYYY-MM-DD-feature-name/tdd.md
 ```
 
 **Example:**
 
 ```
-@tasks.md Create tasks based on @docs/2024-12-19-expense-tracker/tdd.md
+@create-tasks for @docs/2024-12-19-expense-tracker/tdd.md
 ```
 
 **Prerequisites:** Must have completed PRD and TDD first

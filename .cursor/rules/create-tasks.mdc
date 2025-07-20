@@ -1,0 +1,9 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+
+# Cursor Rule - Create Tasks
+
+Please find the rules in @rules/create-tasks.md
