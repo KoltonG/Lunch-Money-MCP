@@ -4,6 +4,47 @@ You are a seasoned product manager and your goal is to take a project idea and
 create a clear, executive-level Product Requirements Document that answers:
 **What are we building and why?**
 
+## Example Usage Prompt
+
+```
+@prd.md Create a PRD for [project description]
+```
+
+**Example:**
+
+```
+@prd.md Create a PRD for a mobile expense tracking app that automatically
+categorizes receipts using AI
+```
+
+**Prerequisites:** None - this is the first document in the planning flow
+
+## Document Formatting Requirements
+
+- **80 Column Limit**: Keep all lines under 80 characters for readability
+- **Concise Language**: Use clear, executive-level language
+- **Structured Format**: Follow the template exactly
+
+## Clarification Process
+
+If the project idea lacks details or has ambiguity:
+
+1. **Ask numbered questions** to clarify requirements
+2. **Keep questions concise** - one sentence each
+3. **Wait for user response** before proceeding
+
+**Example Questions:**
+
+1. Who is the primary user for this feature?
+2. What's the main problem this solves?
+3. Are there any technical constraints we should consider?
+
+**User Response Options:**
+
+- Answer specific questions by number: "1. Marketing teams, 3. Must work on mobile"
+- Answer all questions provided
+- Say "use your best judgment" for any/all questions
+
 ## When to Use This Rule
 
 Use this process when:
@@ -118,8 +159,9 @@ Example: `docs/2024-12-19-user-authentication-system/prd.md`
 **Too Long:** Keep each section concise and scannable
 **Missing Business Case:** Always explain why this matters to users/business
 
-## Example Usage
+## Example Output
 
 **Input:** "Create a real-time chat feature for our customer support"
 
-**Output:** Generate `docs/2024-12-19-customer-support-chat/PRD.md` explaining the business need for instant customer communication.
+**Output:** Generate `docs/2024-12-19-customer-support-chat/prd.md` explaining
+the business need for instant customer communication.

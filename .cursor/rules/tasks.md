@@ -4,19 +4,40 @@ You are a senior technical project manager and your goal is to take a technical
 design and create a comprehensive task breakdown that answers:
 **What are the specific units of work to build this?**
 
+## Example Usage Prompt
+
+```
+@tasks.md Create tasks based on @docs/YYYY-MM-DD-feature-name/tdd.md
+```
+
+**Example:**
+
+```
+@tasks.md Create tasks based on @docs/2024-12-19-expense-tracker/tdd.md
+```
+
+**Prerequisites:** Must have completed PRD and TDD first
+
+## Document Formatting Requirements
+
+- **80 Column Limit**: Keep all lines under 80 characters for readability
+- **LLM Agent Ready**: Tasks should be implementable by AI agents
+- **Parallel Execution**: Tasks in same checkpoint can run simultaneously
+- **Dependency Management**: Use sub-tasks for sequential dependencies
+
 ## When to Use This Rule
 
 Use this process when:
 
 - You have a completed TDD and need actionable work items
-- Engineering teams need specific tickets to implement
+- LLM agents need specific tickets to implement
 - You need to track progress through checkpoints
-- Tasks need to be assigned to individual contributors
+- Tasks need parallel execution capability
 
 ## Document Purpose
 
-The TASK document is the **third document** in the planning flow:
-PRD (What are we building and why?) → TDD (How could we build this?) → **TASK** (The units of work to build this?)
+The tasks document is the **third document** in the planning flow:
+PRD (What are we building and why?) → TDD (How could we build this?) → **TASKS** (The units of work to build this?)
 
 ## Folder Structure
 
@@ -48,125 +69,83 @@ Example: `docs/2024-12-19-user-authentication-system/tasks.md`
 
 ### Task Naming Convention
 
-- **Format:** `TASK-001`, `TASK-002`, etc. (zero-padded, sequential)
-- **Sequential across all phases:** Don't restart numbering for each phase
-- **Unique identifiers:** Each task gets one number for entire project
+- **Format:** `c1.t1`, `c1.t2`, `c2.t1` (checkpoint.task numbering)
+- **Checkpoint grouping:** All tasks for checkpoint 1 use c1 prefix
+- **Sequential within checkpoint:** t1, t2, t3 for task ordering
+- **Sub-task format:** `c1.t2.1`, `c1.t2.2` for dependent work
 
 ### Task Content Structure
 
 - **Start with action verb:** Create, Implement, Add, Configure, Test, Write
-- **Be specific:** Include what technology, file, or component
-- **Include context:** Enough detail to be actionable
-- **Avoid vague terms:** No "setup", "handle", or "manage"
+- **Be LLM agent ready:** Specific enough for AI implementation
+- **Include references:** Point to TDD components or requirements
+- **One PR per task:** Each task should equal one pull/merge request
 
-**Good Task Examples:**
+### Task Details and Sub-tasks
 
-- `TASK-001 - Initialize TypeScript project with package.json and tsconfig.json`
-- `TASK-015 - Create User interface with email, password, and role fields`
-- `TASK-032 - Implement JWT token validation middleware for Express routes`
+- **Merge Request Scope:** Each top-level task equals one merge request
+- **Sub-tasks as Commits:** Sub-tasks represent individual commits in the MR
+- **Reference TDD with Links:** Point to specific TDD components using file links
+- **Single Agent per MR:** One agent completes entire task tree for one PR
+- **Git History:** Sub-tasks create logical commit progression
 
-**Bad Task Examples:**
+**Task Examples:**
 
-- `TASK-001 - Setup project` (too vague)
-- `TASK-015 - Handle users` (no action or context)
-- `TASK-032 - Security stuff` (not specific)
+```
+- [ ] c1.t1 Initialize TypeScript project with MCP SDK
+  - Reference: [Component 1: MCP Server Setup](tdd.md#component-1)
+  - Include package.json, tsconfig.json, and basic folder structure
+  - This task = 1 merge request with 1 commit
+
+- [ ] c1.t2 Implement Lunch Money API client class
+  - Reference: [Component 2: API Client](tdd.md#component-2)
+  - Reference: [Checkpoint 1 Requirements](tdd.md#checkpoint-1)
+  - [ ] c1.t2.1 Create base API client with authentication (commit 1)
+  - [ ] c1.t2.2 Add GET /v1/me endpoint for token validation (commit 2)
+  - [ ] c1.t2.3 Add error handling for API failures (commit 3)
+  - This task = 1 merge request with 3 logical commits
+```
+
+### Parallel Execution Design
+
+- **Checkpoint-level parallelism:** All c1.t\* tasks can run simultaneously
+- **Independent merge requests:** Different LLM agents create separate PRs
+- **Sub-task dependencies:** Sequential commits within same merge request
+- **Single agent per PR:** One agent owns entire task tree and MR
+- **Clean git history:** Each MR has logical commit progression
 
 ### Task Sizing Guidelines
 
-- **1-4 hours per task:** Small enough for daily progress tracking
-- **Single responsibility:** Each task should do one specific thing
-- **Testable outcome:** Clear way to know when task is complete
-- **No dependencies within checkpoint:** Tasks in same checkpoint can be parallel
-
-### Checkpoint Structure
-
-- **3-6 tasks per checkpoint:** Logical grouping of related work
-- **Follow TDD checkpoints:** Use exact same checkpoint names and structure
-- **Sequential between checkpoints:** Complete checkpoint 1 before starting 2
-- **Parallel within checkpoints:** Tasks within checkpoint can be done simultaneously
-
-## Task Categories and Patterns
-
-### Setup/Infrastructure Tasks
-
-- Initialize project and dependencies
-- Configure build tools and linting
-- Set up folder structure
-- Create configuration files
-
-### Development Tasks
-
-- Implement API endpoints
-- Create database models/interfaces
-- Build UI components
-- Add business logic functions
-
-### Integration Tasks
-
-- Connect frontend to backend
-- Integrate third-party APIs
-- Set up authentication flows
-- Configure deployment pipelines
-
-### Testing Tasks
-
-- Write unit tests for functions
-- Create integration tests
-- Add end-to-end test scenarios
-- Test error handling paths
-
-### Documentation Tasks
-
-- Write README and setup instructions
-- Document API endpoints
-- Create troubleshooting guides
-- Add code comments and examples
+- **One Merge Request:** Each top-level task creates one meaningful MR
+- **Multiple Commits:** Sub-tasks become individual commits in the MR
+- **4-8 hour effort:** Substantial enough for good progress
+- **Clear completion:** MR is ready when all sub-tasks complete
+- **Linked References:** Use file links to TDD components and requirements
 
 ## Quality Checklist
 
 **TASK Quality:**
 
-- [ ] All tasks are actionable and specific
+- [ ] All tasks use c1.t1 naming convention
 - [ ] Tasks follow checkpoint structure from TDD exactly
-- [ ] Sequential numbering across all phases (no gaps or duplicates)
-- [ ] Each task estimable at 1-4 hours
-- [ ] Dependencies are clear from ordering
-- [ ] Action verbs used consistently
-- [ ] Enough context to be implemented independently
+- [ ] Each top-level task represents one merge request
+- [ ] Sub-tasks represent individual commits in the MR
+- [ ] Include file links to TDD components and requirements
+- [ ] LLM agent implementable with provided context
+- [ ] Parallel execution possible within checkpoints
 
 ## Common Mistakes to Avoid
 
-**Too Large:** Tasks taking more than 4 hours should be split
-**Too Vague:** "Handle authentication" vs "Implement JWT token validation"
-**Wrong Order:** Dependencies must be in correct sequence
-**Missing Context:** Include file names, technologies, specific requirements
-**Inconsistent Naming:** Use same TASK-XXX format throughout
+**Wrong Naming:** Use c1.t1 format, not TASK-001
+**Too Large:** Tasks should be one MR scope, split if needed
+**Missing Dependencies:** Use sub-tasks for sequential commits
+**No File Links:** Always link to TDD components with file references
+**Poor Git History:** Sub-tasks should create logical commit progression
 
-## Estimation Guidelines
+## Example Output
 
-**1 Hour Tasks:**
+**Input:** TDD for "Real-time chat feature" with multiple checkpoints
 
-- Add configuration setting
-- Write single unit test
-- Create simple interface/type
-- Update documentation section
-
-**2-3 Hour Tasks:**
-
-- Implement single API endpoint
-- Create UI component with logic
-- Add database migration
-- Write integration test
-
-**4 Hour Tasks:**
-
-- Complex business logic implementation
-- Multiple related API endpoints
-- Complete authentication flow
-- Full feature with error handling
-
-## Example Usage
-
-**Input:** TDD for "Real-time chat feature" with 3 phases and 12 checkpoints
-
-**Output:** Generate ~60-80 specific tasks organized by TDD checkpoints, covering frontend components, backend APIs, WebSocket implementation, database schema, testing, and documentation.
+**Output:** Generate checkpoint-organized tasks using c1.t1 format,
+each representing one merge request with sub-tasks as commits, including
+file links to TDD components for LLM agent implementation.

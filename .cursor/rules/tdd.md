@@ -4,6 +4,27 @@ You are a senior software architect and your goal is to take a Product
 Requirements Document (PRD) and create a comprehensive Technical Design
 Document (TDD) that answers: **How could we build this?**
 
+## Example Usage Prompt
+
+```
+@tdd.md Create a TDD based on @docs/YYYY-MM-DD-feature-name/prd.md
+```
+
+**Example:**
+
+```
+@tdd.md Create a TDD based on @docs/2024-12-19-expense-tracker/prd.md
+```
+
+**Prerequisites:** Must have completed PRD first
+
+## Document Formatting Requirements
+
+- **80 Column Limit**: Keep all lines under 80 characters for readability
+- **Mermaid Diagrams**: Use Mermaid syntax for all diagrams and flows
+- **Junior-Friendly**: Write for junior/intern engineers to understand
+- **Component Focus**: Detailed component descriptions for task creation
+
 ## When to Use This Rule
 
 Use this process when:
@@ -117,77 +138,58 @@ and responsibility]
 
 ### Architecture Overview
 
-- **Create ASCII diagram:** Simple boxes and arrows showing data flow
-- **List 3-5 components:** Each with clear responsibility
-- **Show interfaces:** How components communicate
+- **Simple explanation:** Junior/intern engineers should understand easily
+- **Mermaid diagrams:** Use proper Mermaid syntax for all visual elements
+- **Reduce questions:** Provide enough detail to minimize clarifications
+- **Component building blocks:** API endpoints, React components, DB schemas
 
-### Technology Stack
+### Component Descriptions
 
-- **Be specific:** Include versions (Node.js 18+, React 18, etc.)
-- **Justify choices:** Why this technology for this use case
-- **Consider constraints:** Existing infrastructure, team skills
+- **Individual sections:** Each component gets its own detailed section
+- **Technical details:** Include implementation specifics
+- **Reference-ready:** Task document will reference these components
+- **Junior-friendly:** Clear enough for interns to implement
 
-### Implementation Sequencing (Critical Section)
+### Implementation Sequencing
 
-- **Always 3 phases:** Foundation → Enhancement → Polish
-- **Always 4 checkpoints per phase:** Logical groupings of work
-- **Week-based timing:** Phase 1 (Week 1), Phase 2 (Week 2), etc.
-- **Clear success criteria:** How to know phase is complete
+- **Checkpoint-based:** Break work into logical, shippable groupings
+- **Agile methodology:** Each checkpoint delivers presentable value
+- **Non-technical audience:** Checkpoints should be demo-able
+- **Numbered sequence:** Clear ordering for implementation
 
-**Phase Progression:**
+### Checkpoint Requirements
 
-- **Phase 1:** Basic functionality, core features working
-- **Phase 2:** Enhanced features, error handling, optimization
-- **Phase 3:** Polish, edge cases, production readiness
-
-### Data Flow Design
-
-- **Map key operations:** Read, write, update flows
-- **Step-by-step:** Numbered sequences
-- **Include validation:** Where data gets checked
-- **Show error paths:** What happens when things fail
-
-## Sequencing Strategy
-
-**Phase 1 Goals:**
-
-- Get basic end-to-end flow working
-- Prove core concept and architecture
-- Enable early testing and feedback
-
-**Phase 2 Goals:**
-
-- Add filtering, search, advanced features
-- Implement proper error handling
-- Optimize performance and reliability
-
-**Phase 3 Goals:**
-
-- Handle edge cases and corner scenarios
-- Add monitoring, logging, documentation
-- Production deployment and maintenance
+- **Given/When/Then format:** Clear, testable requirements
+- **Project manager friendly:** Easy to check off when complete
+- **Grouped by case:** Bold headers for logical requirement groups
+- **Nested numbering:** c1.r1, c1.r2 format with sub-requirements
+- **Clear enough:** Junior engineers can implement from TDD + components
 
 ## Quality Checklist
 
 **TDD Quality:**
 
-- [ ] Clear architecture diagram with data flow
-- [ ] 3 phases with logical progression
-- [ ] 4 checkpoints per phase with clear descriptions
-- [ ] Technical implementation details included
-- [ ] Sequencing rationale explained
-- [ ] All major technical decisions justified
+- [ ] Clear architecture overview with Mermaid diagrams
+- [ ] Detailed component descriptions for each building block
+- [ ] Checkpoint-based sequencing with shippable value
+- [ ] Given/When/Then requirements with c1.r format
+- [ ] Junior-friendly technical details
+- [ ] All components referenced for task creation
 
 ## Common Mistakes to Avoid
 
-**Too Much Detail:** Don't include specific code or line-by-line implementation
-**Unclear Sequencing:** Phases should build logically on each other
-**Missing Rationale:** Explain why you chose this architecture/approach
-**No Error Handling:** Always include error scenarios and handling
-**Unrealistic Timelines:** One week per phase is guideline, adjust as needed
+**Enough Detail:** Include specific code implementations if you believe
+a junior/intern engineer would need a starting point for implementation.
+**Missing Component Details:** Each component needs enough detail for tasks
+**Missing Checkpoint Details:** Each checkpoint needs enough detail for tasks
+**Unclear Requirements:** Use clear Given/When/Then format
+**No Mermaid Diagrams:** Always use Mermaid for visual elements
+**Junior-Unfriendly:** Write for intern-level understanding
 
-## Example Usage
+## Example Output
 
 **Input:** PRD for "Real-time chat feature for customer support"
 
-**Output:** Generate TDD with 3-tier architecture (frontend/backend/database), WebSocket implementation plan, and 3-phase rollout strategy.
+**Output:** Generate TDD with Mermaid architecture diagrams, detailed
+component descriptions, and checkpoint-based implementation with c1.r
+requirements format.
