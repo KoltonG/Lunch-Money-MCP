@@ -82,9 +82,11 @@ For each sub-task within the selected task:
 2. **Handle TDD Inconsistencies:** If implementation details conflict with or are missing from TDD, ask **Question:** for user clarification
 3. **Update Documents:** If clarification changes requirements, update TDD and tasks.md accordingly
 4. **Mark Complete:** Update tasks.md to mark sub-task with `[x]`
-5. **Request Validation:** Ask user to review and confirm work quality
-6. **Wait for Confirmation:** Pause until user approves before next sub-task
+5. **🛑 MANDATORY STOP:** Ask user to review and confirm work quality
+6. **🛑 WAIT FOR APPROVAL:** Do NOT proceed to next sub-task without explicit user approval
 7. **Handle Feedback:** If user requests changes, implement and re-validate
+
+**⚠️ CRITICAL RULE: NEVER execute multiple sub-tasks in sequence without user validation between each one.**
 
 ### Step 4: Task Completion
 
@@ -114,11 +116,37 @@ When all sub-tasks are complete:
 - **No Skipping:** Cannot skip sub-tasks or move to next task without completion
 - **Dependency Respect:** Verify iteration dependencies before starting
 
+### Correct Sub-task Execution Example
+
+```
+Agent: Executing c1.i1.t1.1 - Create package.json with MCP SDK...
+[creates package.json file]
+[updates tasks.md to mark c1.i1.t1.1 as complete with [x]]
+
+Agent: ✅ Sub-task c1.i1.t1.1 Complete: Created package.json with MCP SDK dependencies.
+
+**Please review the package.json file. Does this look correct for proceeding to c1.i1.t1.2?**
+
+User: Yes, looks good.
+
+Agent: Executing c1.i1.t1.2 - Setup TypeScript configuration...
+[creates tsconfig.json]
+[updates tasks.md to mark c1.i1.t1.2 as complete with [x]]
+
+Agent: ✅ Sub-task c1.i1.t1.2 Complete: Created TypeScript configuration.
+
+**Please review the tsconfig.json file. Does this look correct for proceeding to c1.i1.t1.3?**
+
+User: Approved.
+
+[Continue this pattern for each sub-task...]
+```
+
 ### User Validation Points
 
 - **Before Task Start:** Confirm user wants to execute the selected task
 - **During Implementation:** Ask **Question:** when TDD details are unclear or inconsistent
-- **After Each Sub-task:** Wait for user approval before proceeding
+- **🛑 After Each Sub-task:** MANDATORY - Mark complete with `[x]`, present work, and wait for explicit user approval before proceeding to next sub-task
 - **Before PR Creation:** Confirm PR title/description with user
 - **On Errors:** Stop and request user guidance for any issues
 
