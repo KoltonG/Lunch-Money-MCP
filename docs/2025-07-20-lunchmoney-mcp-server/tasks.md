@@ -56,7 +56,7 @@ _(Can run in parallel after Iteration 1.1 completes)_
   - Reference: [Component 1: MCP Server Structure](tdd.md#component-1-mcp-server-structure)
   - Addresses: c1.r1, c1.r2, c1.r3, c1.r4 from TDD
   - [x] c1.i2.t1.1 Create src/index.ts with McpServer setup
-  - [ ] c1.i2.t1.2 Add StdioServerTransport connection
+  - [x] c1.i2.t1.2 Add StdioServerTransport connection
   - [ ] c1.i2.t1.3 Register get_transactions tool with schema
   - [ ] c1.i2.t1.4 Add start script and test server startup
 
