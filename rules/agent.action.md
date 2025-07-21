@@ -118,15 +118,14 @@ For each sub-task within the selected task:
 6. **Mark Complete:** Update tasks.md to mark sub-task with `[x]` ONLY after functional validation passes
 7. **🛑 MANDATORY STOP:** Ask user to review and confirm work quality with validation evidence
 8. **🛑 WAIT FOR APPROVAL:** Must receive explicit user response containing "approved" or "looks good"
-9. **❌ COMMIT PREVENTION CHECKPOINT:** Before ANY commit command, agent MUST:
-   - ✅ Have received explicit user approval message
-   - ✅ **Share proposed commit message** for user validation
-   - ✅ **Provide numbered options:**
+9. **🚀 AUTOMATIC COMMIT VALIDATION:** Immediately after receiving approval, agent MUST:
+   - ✅ **Automatically present proposed commit message** for user validation
+   - ✅ **Automatically provide numbered options:**
      - **1:** To commit only
      - **2:** To commit and push
      - **Any other response:** Treat as feedback (change code, update commit message, etc.)
    - ✅ Wait for user response with option number (1 or 2) to proceed
-   - ❌ NEVER use git commands without this specific approval sequence
+   - ❌ Do NOT wait for user to explicitly request commit options - present them automatically
 10. **🔧 COMMIT AFTER APPROVAL:** Only commit locally AFTER user validates and approves the work
 11. **🚫 NEVER PUSH:** Do NOT push to remote - user controls when to push
 12. **Handle Feedback:** If user requests changes, implement and re-validate functionally before re-requesting approval
@@ -137,13 +136,13 @@ For each sub-task within the selected task:
 - **NEVER mark sub-task complete without functional validation (dependencies install, scripts run, environment works)**
 - **ALWAYS provide evidence that the work functions, not just that files were created**
 - **🚫 NEVER PUSH TO REMOTE:** Only commit locally - user decides when to push
-- **🛑 AGENT STOPS AT:** Validation request + wait for user approval + THEN commit after approval
+- **🛑 AGENT STOPS AT:** Validation request + wait for user approval + THEN automatically present commit options
 - **❌ ABSOLUTE COMMIT PROHIBITION:** NEVER run `git add` or `git commit` commands without:
   1. User approval of the work
-  2. Proposed commit message shared for validation
-  3. Numbered options provided (1: commit only, 2: commit and push)
+  2. **Automatically** proposed commit message shared for validation
+  3. **Automatically** numbered options provided (1: commit only, 2: commit and push)
   4. User response with option number (1 or 2)
-- **🚫 FILE ACCEPTANCE ≠ COMMIT APPROVAL:** Even if files show "accepted", still present commit message and options
+- **🚀 AUTOMATIC COMMIT FLOW:** After user approves work, immediately present commit message and options without waiting for request
 
 ### Commit Prevention Enforcement
 
@@ -160,11 +159,12 @@ For each sub-task within the selected task:
 
 **Enhanced Commit Approval Workflow:**
 
-1. **Agent presents:** Proposed commit title (short, descriptive)
-2. **Agent provides:** Numbered options (1: commit only, 2: commit and push)
-3. **Agent clarifies:** Any other response = feedback for changes
-4. **User responds:** Option number (1 or 2) to proceed, or feedback for modifications
-5. **Agent executes:** Only after receiving option 1 or 2
+1. **User approves work:** Says "approved", "looks good", etc.
+2. **Agent automatically presents:** Proposed commit title (short, descriptive)
+3. **Agent automatically provides:** Numbered options (1: commit only, 2: commit and push)
+4. **Agent clarifies:** Any other response = feedback for changes
+5. **User responds:** Option number (1 or 2) to proceed, or feedback for modifications
+6. **Agent executes:** Only after receiving option 1 or 2
 
 ### Step 4: Task Completion
 
@@ -231,7 +231,7 @@ Agent: **Proposed commit message:**
 
 **Any other response will be treated as feedback to modify the work or commit message.**
 
-[🛑 COMMIT PREVENTION CHECKPOINT - WAITS FOR EXPLICIT OPTION SELECTION]
+[🚀 AUTOMATIC COMMIT VALIDATION - WAITS FOR OPTION SELECTION]
 
 User: 1
 

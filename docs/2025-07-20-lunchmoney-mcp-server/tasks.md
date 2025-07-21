@@ -47,26 +47,27 @@ _(Must complete before Iteration 1.2 can start)_
   - [x] **Extra:** Enhanced agent.action.md with validation-first workflow and dependency checking
   - [x] **Extra:** Added PR consistency validation and extra work tracking requirements
 
-### Iteration 1.2: Core Implementation
+### ✅ Iteration 1.2: Core Implementation - COMPLETE
 
 _(Can run in parallel after Iteration 1.1 completes)_
 
-- [ ] c1.i2.t1 Implement Basic MCP Server With Tool Registration
+- [x] c1.i2.t1 Implement Basic MCP Server With Tool Registration
 
   - Reference: [Component 1: MCP Server Structure](tdd.md#component-1-mcp-server-structure)
   - Addresses: c1.r1, c1.r2, c1.r3, c1.r4 from TDD
-  - [ ] c1.i2.t1.1 Create src/index.ts with McpServer setup
-  - [ ] c1.i2.t1.2 Add StdioServerTransport connection
-  - [ ] c1.i2.t1.3 Register get_transactions tool with schema
-  - [ ] c1.i2.t1.4 Add start script and test server startup
+  - [x] c1.i2.t1.1 Create src/index.ts with McpServer setup
+  - [x] c1.i2.t1.2 Add StdioServerTransport connection
+  - [x] c1.i2.t1.3 Register get_transactions tool with schema
+    - [x] **Extra:** Created src/tools/getTransactions.ts with Zod schema and axios handler (completed c1.i2.t2 implementation)
+  - [x] c1.i2.t1.4 Add start script and test server startup
 
-- [ ] c1.i2.t2 Implement Get Transactions Tool Handler With Validation
+- [x] c1.i2.t2 Implement Get Transactions Tool Handler With Validation
   - Reference: [Component 2: Async Tool Handler Pattern](tdd.md#component-2-async-tool-handler-pattern)
   - Addresses: c1.r5, c1.r6, c1.r7, c1.r8 from TDD
-  - [ ] c1.i2.t2.1 Create src/tools/getTransactions.ts with Zod schema
-  - [ ] c1.i2.t2.2 Implement async handler with axios HTTP client
-  - [ ] c1.i2.t2.3 Add URL parameter building with URLSearchParams
-  - [ ] c1.i2.t2.4 Add proper error handling with isError flag
+  - [x] c1.i2.t2.1 Create src/tools/getTransactions.ts with Zod schema
+  - [x] c1.i2.t2.2 Implement async handler with axios HTTP client
+  - [x] c1.i2.t2.3 Add URL parameter building with URLSearchParams
+  - [x] c1.i2.t2.4 Add proper error handling with isError flag
 
 ### Iteration 1.3: Testing & Validation
 
@@ -84,8 +85,8 @@ _(Can run in parallel after Iteration 1.2 completes)_
 - [ ] c1.i3.t2 Verify End-to-End MCP Communication Flow
   - Reference: [Checkpoint 1 Requirements](tdd.md#checkpoint-1-mcp-server--test-component)
   - Addresses: c1.r3, c1.r4, c1.r6, c1.r7 from TDD
-  - [ ] c1.i3.t2.1 Test server connection with MCP Inspector
-  - [ ] c1.i3.t2.2 Verify tool advertisement in inspector interface
+  - [x] c1.i3.t2.1 Test server connection with MCP Inspector
+  - [x] c1.i3.t2.2 Verify tool advertisement in inspector interface
   - [ ] c1.i3.t2.3 Execute get_transactions tool via inspector
   - [ ] c1.i3.t2.4 Validate transaction data or error response
 
