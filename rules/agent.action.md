@@ -120,9 +120,13 @@ For each sub-task within the selected task:
 8. **🛑 WAIT FOR APPROVAL:** Must receive explicit user response containing "approved" or "looks good"
 9. **❌ COMMIT PREVENTION CHECKPOINT:** Before ANY commit command, agent MUST:
    - ✅ Have received explicit user approval message
-   - ✅ Ask: "Ready to commit these changes?"
-   - ✅ Wait for user response with "Yes, commit" or "commit approved"
-   - ❌ NEVER use git commands (add, commit) without this specific approval sequence
+   - ✅ **Share proposed commit message** for user validation
+   - ✅ **Provide numbered options:**
+     - **1:** To commit only
+     - **2:** To commit and push
+     - **Any other response:** Treat as feedback (change code, update commit message, etc.)
+   - ✅ Wait for user response with option number (1 or 2) to proceed
+   - ❌ NEVER use git commands without this specific approval sequence
 10. **🔧 COMMIT AFTER APPROVAL:** Only commit locally AFTER user validates and approves the work
 11. **🚫 NEVER PUSH:** Do NOT push to remote - user controls when to push
 12. **Handle Feedback:** If user requests changes, implement and re-validate functionally before re-requesting approval
@@ -136,9 +140,10 @@ For each sub-task within the selected task:
 - **🛑 AGENT STOPS AT:** Validation request + wait for user approval + THEN commit after approval
 - **❌ ABSOLUTE COMMIT PROHIBITION:** NEVER run `git add` or `git commit` commands without:
   1. User approval of the work
-  2. Explicit "Ready to commit?" question asked
-  3. User response with "Yes, commit" or equivalent
-- **🚫 FILE ACCEPTANCE ≠ COMMIT APPROVAL:** Even if files show "accepted", still ask "Ready to commit?"
+  2. Proposed commit message shared for validation
+  3. Numbered options provided (1: commit only, 2: commit and push)
+  4. User response with option number (1 or 2)
+- **🚫 FILE ACCEPTANCE ≠ COMMIT APPROVAL:** Even if files show "accepted", still present commit message and options
 
 ### Commit Prevention Enforcement
 
@@ -153,11 +158,13 @@ For each sub-task within the selected task:
 - File "accepted" status in UI ≠ "ready to commit" approval
 - User maintains complete control over when changes are committed to git history
 
-**Mandatory Phrases for Commit Approval:**
+**Enhanced Commit Approval Workflow:**
 
-- Agent must ask: "Ready to commit these changes?"
-- User must respond with: "Yes, commit" / "commit approved" / "go ahead and commit"
-- ANY git command requires this explicit commit approval sequence
+1. **Agent presents:** Proposed commit title (short, descriptive)
+2. **Agent provides:** Numbered options (1: commit only, 2: commit and push)
+3. **Agent clarifies:** Any other response = feedback for changes
+4. **User responds:** Option number (1 or 2) to proceed, or feedback for modifications
+5. **Agent executes:** Only after receiving option 1 or 2
 
 ### Step 4: Task Completion
 
@@ -211,13 +218,24 @@ Agent: ✅ Sub-task c1.i1.t1.1 Complete: Created package.json with MCP SDK depen
 
 User: Yes, approved.
 
-Agent: **Ready to commit these changes?**
+Agent: **Proposed commit message:**
+```
 
-[🛑 COMMIT PREVENTION CHECKPOINT - WAITS FOR EXPLICIT COMMIT APPROVAL]
+[commit message here]
 
-User: Yes, commit.
+```
 
-Agent: [commits changes locally with descriptive message]
+**Options:**
+1. To commit only
+2. To commit and push
+
+**Any other response will be treated as feedback to modify the work or commit message.**
+
+[🛑 COMMIT PREVENTION CHECKPOINT - WAITS FOR EXPLICIT OPTION SELECTION]
+
+User: 1
+
+Agent: [commits changes locally with approved message]
 Agent: ✅ Changes committed locally. Ready to proceed to c1.i1.t1.2.
 
 User: Yes, looks good.
