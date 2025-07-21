@@ -57,7 +57,8 @@ _(Can run in parallel after Iteration 1.1 completes)_
   - Addresses: c1.r1, c1.r2, c1.r3, c1.r4 from TDD
   - [x] c1.i2.t1.1 Create src/index.ts with McpServer setup
   - [x] c1.i2.t1.2 Add StdioServerTransport connection
-  - [ ] c1.i2.t1.3 Register get_transactions tool with schema
+  - [x] c1.i2.t1.3 Register get_transactions tool with schema
+  - [x] **Extra:** Created src/tools/getTransactions.ts with Zod schema and axios handler
   - [ ] c1.i2.t1.4 Add start script and test server startup
 
 - [ ] c1.i2.t2 Implement Get Transactions Tool Handler With Validation
