@@ -193,7 +193,7 @@ When all sub-tasks are complete:
 Agent: Executing c1.i1.t1.1 - Create package.json with MCP SDK...
 [creates package.json file]
 [runs bun install to verify dependencies work]
-[verifies bun version and creates .tool-versions if needed]
+[verifies development environment meets TDD requirements]
 [tests that bun scripts work: bun run start, bun test, etc.]
 [updates tasks.md to mark c1.i1.t1.1 as complete with [x]]
 
@@ -202,7 +202,7 @@ Agent: ✅ Sub-task c1.i1.t1.1 Complete: Created package.json with MCP SDK depen
 **Functional Validation Evidence:**
 - ✅ Dependencies installed successfully (node_modules created)
 - ✅ bun.lockb file generated
-- ✅ bun version confirmed: v1.x.x
+- ✅ Development environment validated per TDD requirements
 - ✅ Scripts validated: `bun run start` ready
 
 **Please review the package.json file and validation evidence. Does this look correct?**

@@ -38,6 +38,7 @@ _(Must complete before Iteration 1.2 can start)_
 
 - [x] c1.i1.t1 Initialize TypeScript MCP Server Project Structure
   - Reference: [Component 1: MCP Server Structure](tdd.md#component-1-mcp-server-structure)
+  - Reference: [Development Environment Requirements](tdd.md#component-1-mcp-server-structure) (bun version, .tool-versions)
   - Reference: [Checkpoint 1 Requirements](tdd.md#checkpoint-1-mcp-server--test-component)
   - [x] c1.i1.t1.1 Create package.json with MCP SDK and dependencies
   - [x] c1.i1.t1.2 Setup TypeScript configuration and build scripts

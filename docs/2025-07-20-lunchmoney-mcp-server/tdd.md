@@ -99,6 +99,16 @@ await server.connect(transport);
 - `src/tools/getTransactions.ts` - Tool handler
 - `src/tools/getTransactions.test.ts` - Tests for tool handler
 
+**Development Environment Requirements:**
+
+- **Bun Runtime:** Version 1.2.5 or higher required
+- **Version Management:** Create `.tool-versions` file with `bun 1.2.5` if:
+  - File doesn't already exist in project root
+  - Required bun version is not specified in existing file
+  - Current system bun version doesn't meet minimum requirements
+- **Package Management:** Use `bun install` for dependency installation
+- **Build Target:** Configure for bun runtime (see tsconfig.json)
+
 **Package.json Scripts:**
 See `@rules/tech-stack.spec.md` for standard configuration and scripts.
 
