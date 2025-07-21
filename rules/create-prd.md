@@ -72,19 +72,55 @@ To create the prd file, please do the following
 ## prd.md Template
 
 ```markdown
-# PRD: [Feature Name]
+<div align="center">
 
-## User & Context
+# PRD <br/> [Feature Name]
+
+_Executive summary: what we're building and why - scannable by VP level for business context and decision making_
+
+</div>
+
+---
+
+## Table of Contents
+
+- [📋 Context & Opportunity](#context--opportunity)
+  - [User & Context](#user--context)
+  - [What problem are we solving?](#what-problem-are-we-solving)
+  - [Why now?](#why-now)
+- [🎯 Solution & Scope](#solution--scope)
+  - [What are we building?](#what-are-we-building)
+  - [What does success look like?](#what-does-success-look-like)
+  - [Anti-Goals (What we're NOT building)](#anti-goals-what-were-not-building)
+  - [Key Assumptions & Risks](#key-assumptions--risks)
+- [⚡ Execution](#execution)
+  - [How does it work?](#how-does-it-work)
+
+---
+
+## 📋 Context & Opportunity
+
+### User & Context
 
 **Primary User:** [Specific persona with role/context]
 **User Context:** [When/where they encounter this problem]
 **Problem Evidence:** [Specific data/research showing this problem exists]
 
-## What problem are we solving?
+### What problem are we solving?
 
 [1-2 sentences: specific user pain with evidence]
 
-## What does success look like?
+### Why now?
+
+[Market timing, user readiness, competitive landscape, or business catalyst]
+
+## 🎯 Solution & Scope
+
+### What are we building?
+
+[1-2 sentences describing the solution]
+
+### What does success look like?
 
 [Up to 5 numbered checkbox items focusing on behavior change and business outcomes]
 
@@ -92,28 +128,22 @@ To create the prd file, please do the following
 - [ ] **2.** [Business outcome or time savings metric]
 - [ ] **3.** [Product quality/performance metric]
 
-## What are we building?
+### Anti-Goals (What we're NOT building)
 
-[1-2 sentences describing the solution]
+- [Clear scope boundaries to prevent feature creep]
+- [What related features we explicitly won't tackle]
 
-## Key Assumptions & Risks
+### Key Assumptions & Risks
 
 1. **Biggest Risk:** [What could prevent success?]
 2. **User Assumption:** [Will users actually adopt this behavior?]
 3. **Technical Assumption:** [Can we build this reliably?]
 
-## Anti-Goals (What we're NOT building)
+## ⚡ Execution
 
-- [Clear scope boundaries to prevent feature creep]
-- [What related features we explicitly won't tackle]
-
-## How does it work?
+### How does it work?
 
 [Grouped Given/When/Then scenarios with bolded headers]
-
-## Why now?
-
-[Market timing, user readiness, competitive landscape, or business catalyst]
 ```
 
 ## Content Guidelines
