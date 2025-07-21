@@ -1,0 +1,9 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+
+# Cursor Rule - Agent Task Execution
+
+Please find the rules in @rules/agent.action.md
