@@ -190,43 +190,9 @@ describe("parseTransactionData", () => {
 ## Complete Example
 
 ```typescript
-// src/tools/__tests__/getTransactions.test.ts
+// src/tools/getTransactions.test.ts
 import { describe, it, expect } from "bun:test";
-import { buildQueryParams, formatAmount } from "../getTransactions.js";
-
-describe("buildQueryParams", () => {
-  it("should filter out undefined values", () => {
-    // Given parameters with some undefined values
-    const params = {
-      start_date: "2024-01-01",
-      end_date: undefined,
-      category_id: 123,
-    };
-
-    // When calling buildQueryParams function
-    const result = buildQueryParams(params);
-
-    // Then expect only defined parameters in the query string
-    expect(result).toBe("start_date=2024-01-01&category_id=123");
-    // AND expect undefined values to be excluded
-    expect(result).not.toContain("end_date");
-  });
-
-  // Multiple test cases with it.each
-  it.each([
-    // [input value, expected query string, test description]
-    ["test spaces", "value=test%20spaces", "spaces encoded"],
-    ["test&special", "value=test%26special", "ampersand encoded"],
-    ["", "", "empty value"],
-  ])("should handle encoding: %s", (value, expected, description) => {
-    // Given input parameters with various values
-    // When calling buildQueryParams function
-    const result = buildQueryParams({ value });
-
-    // Then expect proper URL encoding
-    expect(result).toBe(expected);
-  });
-});
+import { formatAmount } from "./getTransactions";
 
 describe("formatAmount", () => {
   it("should format transaction amounts correctly", () => {
@@ -243,6 +209,21 @@ describe("formatAmount", () => {
     // AND expect correct decimal places
     expect(result).toMatch(/\$\d+\.\d{2}/);
   });
+
+  // Multiple test cases with it.each
+  it.each([
+    // [amount in cents, currency, expected formatted string]
+    [12345, "USD", "$123.45"],
+    [0, "USD", "$0.00"],
+    [1, "USD", "$0.01"],
+  ])("should format %i cents as %s", (amount, currency, expected) => {
+    // Given amount and currency parameters
+    // When calling formatAmount function
+    const result = formatAmount(amount, currency);
+
+    // Then expect correct formatted output
+    expect(result).toBe(expected);
+  });
 });
 ```
 
@@ -251,13 +232,14 @@ describe("formatAmount", () => {
 ### Focus on Pure Functions
 
 - **Prioritize testing pure functions** (no side effects, predictable output)
-- **Extract business logic** from handlers into pure functions for easier testing
+- **Extract only unique business logic** - don't build what already exists
 - **Minimize mocking** - pure functions don't need mocks and are much easier to test
 - **Design for testability** - separate data transformation from side effects
 
 ### Test Organization
 
-- **One test file per source file**: `utils.ts` → `utils.test.ts` (only `.test.ts`, no `.spec.ts`)
+- **One test file per source file**: `utils.ts` → `utils.test.ts` alongside source (not in `__tests__` folders)
+- **Only `.test.ts` extension** - no `.spec.ts` files
 - **Group related tests** with describe blocks
 - **Test realistic error conditions** and edge cases
 - **Use meaningful test data** that reflects real usage
