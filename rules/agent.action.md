@@ -27,13 +27,14 @@ _Systematic approach for LLM agents to execute tasks from task.md files with use
 
 ```mermaid
 graph LR
-  A[File Analysis] --> B[Task Selection]
-  B --> C[Sub-task Loop]
-  C --> D[Task Completion]
-  C --> C
+  A[File Analysis] --> B[Branch Management]
+  B --> C[Task Selection]
+  C --> D[Sub-task Loop]
+  D --> E[Task Completion]
+  D --> D
 
   classDef step fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-  class A,B,C,D step
+  class A,B,C,D,E step
 ```
 
 ### Step 1: File Analysis
@@ -42,6 +43,24 @@ graph LR
 2. Parse checkpoint/iteration structure
 3. Identify current task status (find first uncompleted task)
 4. Display current iteration dependencies to user
+
+### Step 1.5: Branch Management
+
+1. **Check Current Branch:** Verify what branch we're currently on
+2. **🛑 NEVER Work on Main:** If on `main` branch, MUST create feature branch before any code changes
+3. **Propose Branch Name:** Generate branch name using format: `[feature-name]/[checkpoint]-[iteration]-[task]-[description]`
+4. **Create Branch:** Create and switch to feature branch before starting work
+5. **Branch Naming Convention:**
+   - Format: `[feature-name]/[checkpoint]-[iteration]-[task]-[description]`
+   - Feature name derived from docs folder (e.g., `lunchmoney-mcp-server`)
+   - Task identifier includes checkpoint, iteration, and task number
+   - Description summarizes the specific work being done
+   - Examples:
+     - `lunchmoney-mcp-server/c1-i1-t1-foundation-setup`
+     - `lunchmoney-mcp-server/c1-i2-t1-mcp-server-implementation`
+     - `lunchmoney-mcp-server/c1-i2-t2-transaction-tool-handler`
+     - `user-auth-system/c1-i1-t1-database-schema`
+   - **Self-Descriptive:** Anyone can see feature + task from branch name alone
 
 ### Step 2: Task Selection
 
@@ -207,6 +226,23 @@ Please provide a valid tasks.md file.
 ```
 Error: Cannot execute c1.i2.t1 - Iteration 1.1 must complete first.
 Next available task: c1.i1.t1
+```
+
+### Branch Management Errors
+
+```
+🛑 Error: Currently on 'main' branch. Cannot proceed with task execution.
+
+Feature: lunchmoney-mcp-server (derived from docs/2025-07-20-lunchmoney-mcp-server/)
+Task: c1.i1.t1 Initialize TypeScript MCP Server Project Structure
+Proposed branch name: lunchmoney-mcp-server/c1-i1-t1-foundation-setup
+
+Do you want me to:
+1. Create and switch to the proposed branch
+2. Use a different branch name
+3. Switch to an existing branch
+
+Please specify your preference before proceeding.
 ```
 
 ### User Rejection
