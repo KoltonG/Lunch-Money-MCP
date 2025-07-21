@@ -100,12 +100,23 @@ For each sub-task within the selected task:
 1. **Execute:** Complete the sub-task work (code, files, tests, etc.)
 2. **Handle TDD Inconsistencies:** If implementation details conflict with or are missing from TDD, ask **Question:** for user clarification
 3. **Update Documents:** If clarification changes requirements, update TDD and tasks.md accordingly
-4. **Mark Complete:** Update tasks.md to mark sub-task with `[x]`
-5. **🛑 MANDATORY STOP:** Ask user to review and confirm work quality
-6. **🛑 WAIT FOR APPROVAL:** Do NOT proceed to next sub-task without explicit user approval
-7. **Handle Feedback:** If user requests changes, implement and re-validate
+4. **🔧 FUNCTIONAL VALIDATION:**
+   - **🛑 MANDATORY:** Verify .gitignore exists and includes `node_modules/` before installing dependencies
+   - Test package management commands work (e.g., `bun install`, `npm install`)
+   - Verify TypeScript compilation and runtime validation (e.g., `bunx tsc --noEmit`)
+   - Test that package.json scripts execute without errors
+   - Confirm all generated files are functionally correct and properly ignored by git
+   - **🛑 NEVER commit node_modules or dependency folders to git**
+5. **Mark Complete:** Update tasks.md to mark sub-task with `[x]` ONLY after functional validation passes
+6. **🛑 MANDATORY STOP:** Ask user to review and confirm work quality with validation evidence
+7. **🛑 WAIT FOR APPROVAL:** Do NOT proceed to next sub-task without explicit user approval
+8. **Handle Feedback:** If user requests changes, implement and re-validate functionally
 
-**⚠️ CRITICAL RULE: NEVER execute multiple sub-tasks in sequence without user validation between each one.**
+**⚠️ CRITICAL RULES:**
+
+- **NEVER execute multiple sub-tasks in sequence without user validation between each one**
+- **NEVER mark sub-task complete without functional validation (dependencies install, scripts run, environment works)**
+- **ALWAYS provide evidence that the work functions, not just that files were created**
 
 ### Step 4: Task Completion
 
@@ -140,23 +151,37 @@ When all sub-tasks are complete:
 ```
 Agent: Executing c1.i1.t1.1 - Create package.json with MCP SDK...
 [creates package.json file]
+[runs bun install to verify dependencies work]
+[verifies bun version and creates .tool-versions if needed]
+[tests that bun scripts work: bun run start, bun test, etc.]
 [updates tasks.md to mark c1.i1.t1.1 as complete with [x]]
 
 Agent: ✅ Sub-task c1.i1.t1.1 Complete: Created package.json with MCP SDK dependencies.
 
-**Please review the package.json file. Does this look correct for proceeding to c1.i1.t1.2?**
+**Functional Validation Evidence:**
+- ✅ Dependencies installed successfully (node_modules created)
+- ✅ bun.lockb file generated
+- ✅ bun version confirmed: v1.x.x
+- ✅ Scripts validated: `bun run start` ready
+
+**Please review the package.json and validation evidence. Does this look correct for proceeding to c1.i1.t1.2?**
 
 User: Yes, looks good.
 
 Agent: Executing c1.i1.t1.2 - Setup TypeScript configuration...
 [creates tsconfig.json]
+[runs TypeScript compiler to verify config works]
+[tests bun build command with TypeScript]
 [updates tasks.md to mark c1.i1.t1.2 as complete with [x]]
 
 Agent: ✅ Sub-task c1.i1.t1.2 Complete: Created TypeScript configuration.
 
-**Please review the tsconfig.json file. Does this look correct for proceeding to c1.i1.t1.3?**
+**Functional Validation Evidence:**
+- ✅ TypeScript compiles without errors
+- ✅ bun build command works
+- ✅ Type checking passes
 
-User: Approved.
+**Please review the tsconfig.json and validation evidence. Does this look correct for proceeding to c1.i1.t1.3?**
 
 [Continue this pattern for each sub-task...]
 ```
