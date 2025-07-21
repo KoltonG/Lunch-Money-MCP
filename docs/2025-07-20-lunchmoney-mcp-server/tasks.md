@@ -36,12 +36,12 @@ graph LR
 
 _(Must complete before Iteration 1.2 can start)_
 
-- [ ] c1.i1.t1 Initialize TypeScript MCP Server Project Structure
+- [x] c1.i1.t1 Initialize TypeScript MCP Server Project Structure
   - Reference: [Component 1: MCP Server Structure](tdd.md#component-1-mcp-server-structure)
   - Reference: [Checkpoint 1 Requirements](tdd.md#checkpoint-1-mcp-server--test-component)
-  - [ ] c1.i1.t1.1 Create package.json with MCP SDK and dependencies
-  - [ ] c1.i1.t1.2 Setup TypeScript configuration and build scripts
-  - [ ] c1.i1.t1.3 Create src/tools/ folder structure as specified
+  - [x] c1.i1.t1.1 Create package.json with MCP SDK and dependencies
+  - [x] c1.i1.t1.2 Setup TypeScript configuration and build scripts
+  - [x] c1.i1.t1.3 Create src/tools/ folder structure as specified
 
 ### Iteration 1.2: Core Implementation
 
