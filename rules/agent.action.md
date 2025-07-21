@@ -104,19 +104,23 @@ For each sub-task within the selected task:
 1. **Execute:** Complete the sub-task work (code, files, tests, etc.)
 2. **Handle TDD Inconsistencies:** If implementation details conflict with or are missing from TDD, ask **Question:** for user clarification
 3. **Update Documents:** If clarification changes requirements, update TDD and tasks.md accordingly
-4. **🔧 FUNCTIONAL VALIDATION:**
+4. **📋 Track Extra Work:** If doing work outside original task scope (e.g., dependency updates, PR feedback), document it:
+   - Add extra work items to tasks.md under current task with clear labels
+   - Example: `- [x] Extra: Update Axios to ^1.7.0 (PR review feedback)`
+   - Maintain clear separation between planned task work and additional work
+5. **🔧 FUNCTIONAL VALIDATION:**
    - **🛑 MANDATORY:** Verify .gitignore exists and includes `node_modules/` before installing dependencies
    - Test package management commands work (e.g., `bun install`, `npm install`)
    - Verify TypeScript compilation and runtime validation (e.g., `bunx tsc --noEmit`)
    - Test that package.json scripts execute without errors
    - Confirm all generated files are functionally correct and properly ignored by git
    - **🛑 NEVER commit node_modules or dependency folders to git**
-5. **Mark Complete:** Update tasks.md to mark sub-task with `[x]` ONLY after functional validation passes
-6. **🛑 MANDATORY STOP:** Ask user to review and confirm work quality with validation evidence
-7. **🛑 WAIT FOR APPROVAL:** Do NOT proceed without explicit user approval
-8. **🔧 COMMIT AFTER APPROVAL:** Only commit locally AFTER user validates and approves the work
-9. **🚫 NEVER PUSH:** Do NOT push to remote - user controls when to push
-10. **Handle Feedback:** If user requests changes, implement and re-validate functionally before re-requesting approval
+6. **Mark Complete:** Update tasks.md to mark sub-task with `[x]` ONLY after functional validation passes
+7. **🛑 MANDATORY STOP:** Ask user to review and confirm work quality with validation evidence
+8. **🛑 WAIT FOR APPROVAL:** Do NOT proceed without explicit user approval
+9. **🔧 COMMIT AFTER APPROVAL:** Only commit locally AFTER user validates and approves the work
+10. **🚫 NEVER PUSH:** Do NOT push to remote - user controls when to push
+11. **Handle Feedback:** If user requests changes, implement and re-validate functionally before re-requesting approval
 
 **⚠️ CRITICAL RULES:**
 
@@ -208,6 +212,8 @@ Agent: ✅ Sub-task c1.i1.t1.2 Complete: Created TypeScript configuration.
 - **During Implementation:** Ask **Question:** when TDD details are unclear or inconsistent
 - **🛑 After Each Sub-task:** MANDATORY - Mark complete with `[x]`, present work, and wait for explicit user approval before proceeding to next sub-task
 - **Before PR Creation:** Confirm PR title/description with user and inform them to assign themselves as assignee
+- **🔍 Before Push:** Validate PR title/description consistency with all changes made during session
+- **📋 For Extra Work:** Update tasks.md to document any work done outside original task scope
 - **On Errors:** Stop and request user guidance for any issues
 
 ### Progress Tracking
@@ -225,6 +231,14 @@ Agent: ✅ Sub-task c1.i1.t1.2 Complete: Created TypeScript configuration.
 3. **⚠️ Assignee Limitation:** Current GitHub MCP tools don't support setting assignees during creation
 4. **User Action Required:** Inform user to manually assign themselves as assignee in GitHub UI
 5. **PR Link:** Provide direct link to created PR for easy access
+
+### PR Consistency Validation (Before Push)
+
+1. **🔍 Review All Changes:** Check git log to identify all commits made during session
+2. **📋 Validate PR Title:** Ensure PR title reflects ALL work done, not just original task
+3. **📝 Validate PR Description:** Verify description includes all changes, updates, and extra work
+4. **🆕 Update PR if Needed:** If significant extra work was done, update PR title/description to reflect complete scope
+5. **📚 Document Extra Work:** Update tasks.md to track any work done outside original task scope
 
 ### PR Title Format
 

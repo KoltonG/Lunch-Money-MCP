@@ -42,6 +42,9 @@ _(Must complete before Iteration 1.2 can start)_
   - [x] c1.i1.t1.1 Create package.json with MCP SDK and dependencies
   - [x] c1.i1.t1.2 Setup TypeScript configuration and build scripts
   - [x] c1.i1.t1.3 Create src/tools/ folder structure as specified
+  - [x] **Extra:** Update Axios to ^1.7.0 (PR review feedback)
+  - [x] **Extra:** Enhanced agent.action.md with validation-first workflow and dependency checking
+  - [x] **Extra:** Added PR consistency validation and extra work tracking requirements
 
 ### Iteration 1.2: Core Implementation
 
