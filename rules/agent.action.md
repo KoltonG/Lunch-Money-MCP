@@ -198,7 +198,7 @@ Agent: ✅ Sub-task c1.i1.t1.2 Complete: Created TypeScript configuration.
 - **Before Task Start:** Confirm user wants to execute the selected task
 - **During Implementation:** Ask **Question:** when TDD details are unclear or inconsistent
 - **🛑 After Each Sub-task:** MANDATORY - Mark complete with `[x]`, present work, and wait for explicit user approval before proceeding to next sub-task
-- **Before PR Creation:** Confirm PR title/description with user
+- **Before PR Creation:** Confirm PR title/description with user and inform them to assign themselves as assignee
 - **On Errors:** Stop and request user guidance for any issues
 
 ### Progress Tracking
@@ -208,6 +208,14 @@ Agent: ✅ Sub-task c1.i1.t1.2 Complete: Created TypeScript configuration.
 - **Next Steps:** Inform user what task comes next in the sequence
 
 ## Pull Request Generation
+
+### PR Creation Process
+
+1. **Confirm with User:** Ask user to confirm PR title and description before creating
+2. **Create PR:** Use GitHub MCP to create pull request with proper title/description
+3. **⚠️ Assignee Limitation:** Current GitHub MCP tools don't support setting assignees during creation
+4. **User Action Required:** Inform user to manually assign themselves as assignee in GitHub UI
+5. **PR Link:** Provide direct link to created PR for easy access
 
 ### PR Title Format
 
