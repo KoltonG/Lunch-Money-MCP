@@ -42,4 +42,10 @@ graph LR
 
 **bun test** - Built-in test runner with Jest-compatible API
 
+**File Organization:**
+
+- `src/utils.ts` → `src/utils.test.ts` (alongside source)
+- `src/tools/handler.ts` → `src/tools/handler.test.ts` (alongside source)
+- No `__tests__` folders - keep tests next to source files
+
 Follow patterns from `@rules/test.spec.md`
