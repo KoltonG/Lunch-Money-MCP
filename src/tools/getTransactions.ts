@@ -1,17 +1,34 @@
 import { z } from "zod";
 import axios from "axios";
 
-export const getTransactionsSchema = z.object({
+// Export schema object for MCP tool registration (DRY principle)
+export const getTransactionsInputSchema = {
   start_date: z.string().optional().describe("Start date (YYYY-MM-DD)"),
   end_date: z.string().optional().describe("End date (YYYY-MM-DD)"),
   category_id: z.number().optional().describe("Filter by category ID"),
-});
+};
+
+// Create Zod object for type inference
+const getTransactionsArgsSchema = z.object(getTransactionsInputSchema);
 
 export async function handleGetTransactions(
-  args: z.infer<typeof getTransactionsSchema>,
-  extra?: any
+  args: z.infer<typeof getTransactionsArgsSchema>
 ) {
   try {
+    // Validate API key is present
+    const apiKey = process.env.LUNCH_MONEY_API_KEY;
+    if (!apiKey) {
+      return {
+        content: [
+          {
+            type: "text" as const,
+            text: "Error: LUNCH_MONEY_API_KEY environment variable is required",
+          },
+        ],
+        isError: true,
+      };
+    }
+
     const { start_date, end_date, category_id } = args;
 
     // Build URL with query parameters using native URLSearchParams
@@ -23,7 +40,7 @@ export async function handleGetTransactions(
 
     const response = await axios.get(url.toString(), {
       headers: {
-        Authorization: `Bearer ${process.env.LUNCH_MONEY_API_KEY}`,
+        Authorization: `Bearer ${apiKey}`,
       },
     });
 
