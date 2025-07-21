@@ -117,10 +117,15 @@ For each sub-task within the selected task:
    - **🛑 NEVER commit node_modules or dependency folders to git**
 6. **Mark Complete:** Update tasks.md to mark sub-task with `[x]` ONLY after functional validation passes
 7. **🛑 MANDATORY STOP:** Ask user to review and confirm work quality with validation evidence
-8. **🛑 WAIT FOR APPROVAL:** Do NOT proceed without explicit user approval
-9. **🔧 COMMIT AFTER APPROVAL:** Only commit locally AFTER user validates and approves the work
-10. **🚫 NEVER PUSH:** Do NOT push to remote - user controls when to push
-11. **Handle Feedback:** If user requests changes, implement and re-validate functionally before re-requesting approval
+8. **🛑 WAIT FOR APPROVAL:** Must receive explicit user response containing "approved" or "looks good"
+9. **❌ COMMIT PREVENTION CHECKPOINT:** Before ANY commit command, agent MUST:
+   - ✅ Have received explicit user approval message
+   - ✅ Ask: "Ready to commit these changes?"
+   - ✅ Wait for user response with "Yes, commit" or "commit approved"
+   - ❌ NEVER use git commands (add, commit) without this specific approval sequence
+10. **🔧 COMMIT AFTER APPROVAL:** Only commit locally AFTER user validates and approves the work
+11. **🚫 NEVER PUSH:** Do NOT push to remote - user controls when to push
+12. **Handle Feedback:** If user requests changes, implement and re-validate functionally before re-requesting approval
 
 **⚠️ CRITICAL RULES:**
 
@@ -129,7 +134,30 @@ For each sub-task within the selected task:
 - **ALWAYS provide evidence that the work functions, not just that files were created**
 - **🚫 NEVER PUSH TO REMOTE:** Only commit locally - user decides when to push
 - **🛑 AGENT STOPS AT:** Validation request + wait for user approval + THEN commit after approval
-- **🚫 NEVER COMMIT BEFORE VALIDATION:** Always ask for user approval BEFORE committing changes
+- **❌ ABSOLUTE COMMIT PROHIBITION:** NEVER run `git add` or `git commit` commands without:
+  1. User approval of the work
+  2. Explicit "Ready to commit?" question asked
+  3. User response with "Yes, commit" or equivalent
+- **🚫 FILE ACCEPTANCE ≠ COMMIT APPROVAL:** Even if files show "accepted", still ask "Ready to commit?"
+
+### Commit Prevention Enforcement
+
+**Two-Step Approval Process Required:**
+
+1. **Work Approval:** User reviews and approves the quality of work done
+2. **Commit Approval:** User explicitly approves committing the changes to git
+
+**Why Two Steps?**
+
+- Work can be approved but user may want additional changes before commit
+- File "accepted" status in UI ≠ "ready to commit" approval
+- User maintains complete control over when changes are committed to git history
+
+**Mandatory Phrases for Commit Approval:**
+
+- Agent must ask: "Ready to commit these changes?"
+- User must respond with: "Yes, commit" / "commit approved" / "go ahead and commit"
+- ANY git command requires this explicit commit approval sequence
 
 ### Step 4: Task Completion
 
@@ -177,11 +205,17 @@ Agent: ✅ Sub-task c1.i1.t1.1 Complete: Created package.json with MCP SDK depen
 - ✅ bun version confirmed: v1.x.x
 - ✅ Scripts validated: `bun run start` ready
 
-**Please review the package.json file and validation evidence. Does this look correct for proceeding to c1.i1.t1.2?**
+**Please review the package.json file and validation evidence. Does this look correct?**
 
 [🛑 AGENT STOPS HERE - WAITS FOR USER APPROVAL - DOES NOT COMMIT OR PUSH]
 
 User: Yes, approved.
+
+Agent: **Ready to commit these changes?**
+
+[🛑 COMMIT PREVENTION CHECKPOINT - WAITS FOR EXPLICIT COMMIT APPROVAL]
+
+User: Yes, commit.
 
 Agent: [commits changes locally with descriptive message]
 Agent: ✅ Changes committed locally. Ready to proceed to c1.i1.t1.2.
