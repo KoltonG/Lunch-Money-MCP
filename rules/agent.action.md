@@ -108,15 +108,19 @@ For each sub-task within the selected task:
    - Confirm all generated files are functionally correct and properly ignored by git
    - **🛑 NEVER commit node_modules or dependency folders to git**
 5. **Mark Complete:** Update tasks.md to mark sub-task with `[x]` ONLY after functional validation passes
-6. **🛑 MANDATORY STOP:** Ask user to review and confirm work quality with validation evidence
-7. **🛑 WAIT FOR APPROVAL:** Do NOT proceed to next sub-task without explicit user approval
-8. **Handle Feedback:** If user requests changes, implement and re-validate functionally
+6. **🔧 LOCAL COMMIT:** Commit changes locally with descriptive commit message
+7. **🛑 MANDATORY STOP:** Ask user to review and confirm work quality with validation evidence
+8. **🛑 WAIT FOR APPROVAL:** Do NOT proceed to next sub-task without explicit user approval
+9. **🚫 NEVER PUSH:** Do NOT push to remote - user controls when to push
+10. **Handle Feedback:** If user requests changes, implement and re-validate functionally
 
 **⚠️ CRITICAL RULES:**
 
 - **NEVER execute multiple sub-tasks in sequence without user validation between each one**
 - **NEVER mark sub-task complete without functional validation (dependencies install, scripts run, environment works)**
 - **ALWAYS provide evidence that the work functions, not just that files were created**
+- **🚫 NEVER PUSH TO REMOTE:** Only commit locally - user decides when to push
+- **🛑 AGENT STOPS AT:** Local commit + validation request + wait for user approval
 
 ### Step 4: Task Completion
 
@@ -163,8 +167,11 @@ Agent: ✅ Sub-task c1.i1.t1.1 Complete: Created package.json with MCP SDK depen
 - ✅ bun.lockb file generated
 - ✅ bun version confirmed: v1.x.x
 - ✅ Scripts validated: `bun run start` ready
+- ✅ Changes committed locally with descriptive message
 
-**Please review the package.json and validation evidence. Does this look correct for proceeding to c1.i1.t1.2?**
+**Please review the package.json file and validation evidence. Does this look correct for proceeding to c1.i1.t1.2?**
+
+[🛑 AGENT STOPS HERE - WAITS FOR USER APPROVAL - DOES NOT PUSH]
 
 User: Yes, looks good.
 
