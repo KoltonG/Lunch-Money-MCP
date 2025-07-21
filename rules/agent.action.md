@@ -65,7 +65,11 @@ graph LR
 ### Step 2: Task Selection
 
 1. Select next uncompleted task in sequence
-2. Verify iteration dependencies are satisfied
+2. **🔍 DEPENDENCY CHECK:** Verify iteration dependencies are satisfied:
+   - Check if task depends on previous iteration (e.g., c1.i2.t1 depends on c1.i1.\* completion)
+   - **🛑 BRANCH MERGE VALIDATION:** If dependent iteration exists, verify that work is merged to main branch
+   - **🚫 BLOCK EXECUTION:** If dependent iteration not merged to main, STOP and inform user cannot proceed
+   - **Error Message:** "Cannot execute [task] - Iteration [x.y] must be merged to main branch first"
 3. Display task details and sub-tasks to user
 4. Ask for user confirmation to proceed
 
@@ -108,11 +112,11 @@ For each sub-task within the selected task:
    - Confirm all generated files are functionally correct and properly ignored by git
    - **🛑 NEVER commit node_modules or dependency folders to git**
 5. **Mark Complete:** Update tasks.md to mark sub-task with `[x]` ONLY after functional validation passes
-6. **🔧 LOCAL COMMIT:** Commit changes locally with descriptive commit message
-7. **🛑 MANDATORY STOP:** Ask user to review and confirm work quality with validation evidence
-8. **🛑 WAIT FOR APPROVAL:** Do NOT proceed to next sub-task without explicit user approval
+6. **🛑 MANDATORY STOP:** Ask user to review and confirm work quality with validation evidence
+7. **🛑 WAIT FOR APPROVAL:** Do NOT proceed without explicit user approval
+8. **🔧 COMMIT AFTER APPROVAL:** Only commit locally AFTER user validates and approves the work
 9. **🚫 NEVER PUSH:** Do NOT push to remote - user controls when to push
-10. **Handle Feedback:** If user requests changes, implement and re-validate functionally
+10. **Handle Feedback:** If user requests changes, implement and re-validate functionally before re-requesting approval
 
 **⚠️ CRITICAL RULES:**
 
@@ -120,7 +124,8 @@ For each sub-task within the selected task:
 - **NEVER mark sub-task complete without functional validation (dependencies install, scripts run, environment works)**
 - **ALWAYS provide evidence that the work functions, not just that files were created**
 - **🚫 NEVER PUSH TO REMOTE:** Only commit locally - user decides when to push
-- **🛑 AGENT STOPS AT:** Local commit + validation request + wait for user approval
+- **🛑 AGENT STOPS AT:** Validation request + wait for user approval + THEN commit after approval
+- **🚫 NEVER COMMIT BEFORE VALIDATION:** Always ask for user approval BEFORE committing changes
 
 ### Step 4: Task Completion
 
@@ -167,11 +172,15 @@ Agent: ✅ Sub-task c1.i1.t1.1 Complete: Created package.json with MCP SDK depen
 - ✅ bun.lockb file generated
 - ✅ bun version confirmed: v1.x.x
 - ✅ Scripts validated: `bun run start` ready
-- ✅ Changes committed locally with descriptive message
 
 **Please review the package.json file and validation evidence. Does this look correct for proceeding to c1.i1.t1.2?**
 
-[🛑 AGENT STOPS HERE - WAITS FOR USER APPROVAL - DOES NOT PUSH]
+[🛑 AGENT STOPS HERE - WAITS FOR USER APPROVAL - DOES NOT COMMIT OR PUSH]
+
+User: Yes, approved.
+
+Agent: [commits changes locally with descriptive message]
+Agent: ✅ Changes committed locally. Ready to proceed to c1.i1.t1.2.
 
 User: Yes, looks good.
 
@@ -266,6 +275,25 @@ Please provide a valid tasks.md file.
 ```
 Error: Cannot execute c1.i2.t1 - Iteration 1.1 must complete first.
 Next available task: c1.i1.t1
+```
+
+### Iteration Dependency - Branch Not Merged
+
+```
+🛑 Error: Cannot execute c1.i2.t1 - Iteration 1.1 must be merged to main branch first.
+
+Current Status:
+- Target Task: c1.i2.t1 [Task Name]
+- Required Dependency: Iteration 1.1 completion merged to main
+- Current Branch: [current-branch-name]
+- Issue: Previous iteration work not yet merged to main branch
+
+Resolution Required:
+1. Complete and merge iteration 1.1 work to main branch
+2. Pull latest main branch changes
+3. Then restart with c1.i2.t1 execution
+
+Cannot proceed with current task until dependency is merged to main.
 ```
 
 ### Branch Management Errors
